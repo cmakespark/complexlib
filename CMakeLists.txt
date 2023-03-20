@@ -14,7 +14,7 @@ else()
         message(STATUS "Downloading buildsystem...")
 
         find_package(Git REQUIRED)
-        execute_process(COMMAND ${GIT_EXECUTABLE} clone --branch master git@github.com:cmakespark/cmake.git ${CMAKE_BINARY_DIR}/buildsys)
+        execute_process(COMMAND ${GIT_EXECUTABLE} clone --branch master https://github.com/cmakespark/cmake.git ${CMAKE_BINARY_DIR}/buildsys)
     endif()
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}/buildsys")
 endif()
@@ -23,9 +23,11 @@ endif()
 # Project specific parameters #
 # Change as you see fit       #
 ###############################
-set(QT_MAJOR_VERSION_REQUIRED 5)
-option(BUILD_SHARED_LIBS "Build as shared library" OFF)
 
+#Set & cache variable version number, Change global QT version number here
+set(QT_MAJOR_VERSION_REQUIRED 6 CACHE STRING "QT Major version variable")
+
+option(BUILD_SHARED_LIBS "Build as shared library" OFF)
 
 # Include common cmake modules
 include(CommonConfig)
